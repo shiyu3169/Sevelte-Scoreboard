@@ -1,11 +1,30 @@
 <script>
-	export let name;
+  import Navbar from "./Navbar.svelte";
+  import Player from "./Player.svelte";
+
+  let players = [
+    {
+      name: "John Doe",
+      points: 53
+    },
+    {
+      name: "Sam Smith",
+      points: 45
+    },
+    {
+      name: "Sara Wilson",
+      points: 34
+    }
+  ];
 </script>
 
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
-
-<h1>Hello {name}!</h1>
+<Navbar />
+<div class="container">
+  {#if players.length === 0}
+    <p>No Players</p>
+  {:else}
+    {#each players as player}
+      <Player name={player.name} points={player.points} />
+    {/each}
+  {/if}
+</div>
